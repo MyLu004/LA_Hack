@@ -7,7 +7,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.container}>
             <Image source={require('./assets/doctorImg.png')} />
             <Text style={styles.text}> Welcome to MedAssist </Text>
-
+            <Text> ARE YOU A...</Text>
             <Button
                 title='Care Taker'
                 onPress={() => navigation.navigate('Caretaker')}
