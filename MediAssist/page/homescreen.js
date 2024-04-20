@@ -5,7 +5,7 @@ import { StyleSheet, View, Image, Text, Button } from 'react-native';
 const HomeScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Image source={require('./assets/doctorImg.png')} />
+            <Image source={require('../assets/doctorImg.png')} />
             <Text style={styles.text}> Welcome to MedAssist </Text>
 
             <View style={styles.innerWrapper}>
