@@ -1,25 +1,25 @@
+// App.js
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './homescreen';
+import CaretakerScreen from '././careTaker';
+import PatientScreen from './patient';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}> Welcome to MedAssist </Text>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Caretaker" component={CaretakerScreen} />
+        <Stack.Screen name="Patient" component={PatientScreen} />
+      </Stack.Navigator>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'lightblue',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text:{  
-    fontSize: 35,
-    // color: 'red',
-  },
-});
+export default App;
