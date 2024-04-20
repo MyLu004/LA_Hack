@@ -6,7 +6,6 @@ import "./App.css";
 
 const  API_URL = 'https://www.omdbapi.com?apikey=57fcc230';
 
-
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
@@ -24,13 +23,13 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>MovieLand</h1>
+      <h1>MediAssist</h1>
 
       <div className="search">
         <input
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search for movies"
+          placeholder="Search for doctors"
         />
         <img
           src={SearchIcon}
