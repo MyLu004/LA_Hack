@@ -7,16 +7,24 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.container}>
             <Image source={require('./assets/doctorImg.png')} />
             <Text style={styles.text}> Welcome to MedAssist </Text>
-            <Text> ARE YOU A...</Text>
-            <Button
-                title='Care Taker'
-                onPress={() => navigation.navigate('Caretaker')}
-            />
 
-            <Button
-                title='Patient'
-                onPress={() => navigation.navigate('Patient')}
-            />
+            <View style={styles.innerWrapper}>
+                <Text style={styles.textp}> ARE YOU A...</Text>
+
+                <Button
+                    title='Care Taker'
+                    onPress={() => navigation.navigate('Caretaker')}
+                    style={styles.button}
+                />
+
+                <Button
+                    title='Patient'
+                    onPress={() => navigation.navigate('Patient')}
+                    style={styles.button}
+                />
+            </View>
+
+
         </View>
     );
 }
@@ -29,9 +37,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     text: {
-        fontSize: 15,
+        fontSize: 30,
         color: 'darkblue',
     },
+
+    textp: {
+        fontSize: 15,
+        fontWeight: 'bold',
+    },
+    button: {
+        margin: 10,
+    },
+    innerWrapper: {
+        width: 100,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 15,
+    }
 });
 
 export default HomeScreen;
