@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView, View, Text, TextInput, Button } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Question3 = ({ navigation }) => {
-    const [ques1, setQues1] = useState('');
+    const [patientInfo, setPatientInfo] = useState(null);
 
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const jsonValue = await AsyncStorage.getItem('@patient_info');
+                if (jsonValue !== null) {
+                    const data = JSON.parse(jsonValue);
+                    setPatientInfo(data);
+                }
+            } catch (e) {
+                console.error("Failed to retrieve data", e);
+            }
+        };
 
-
-    // const [error, setError] = useState('');
-
-    // const isAllQuestionsAnswered = () => {
-    //     // Check if any of the questionBox inputs are empty
-    //     if (ques1.trim() === '') {
-    //         return false; // At least one question is not answered
-    //     }
-    //     return true; // All questions are answered
-    // };
+        getData();
+    }, []);
 
     const handleNextBtn = () => {
         navigation.navigate('Question4');
@@ -25,16 +30,23 @@ const Question3 = ({ navigation }) => {
             {/* Header: processing bar */}
             <View>
                 <Text>PAGE 3/4</Text>
+
             </View>
 
-            {/* Question 5 */}
-            <View style={styles.questionWrapper}>
-                <Text style={styles.questionText}>RECORD MESSAGE FOR PATIENT</Text>
-                <View>
-                    {/*ANWER FOR THE RECORD, base all on the info the user type in */}
+            {/* Display Patient Information */}
+            {patientInfo && (
+                <View style={styles.questionWrapper}>
+                    <Text style={styles.questionText}>Record Message for Patient</Text>
+                    <View>
+                        <Text>Name: {patientInfo.name}</Text>
+                        <Text>Diagnosis: {patientInfo.diagnosis}</Text>
+                        <Text>Medication: {patientInfo.medication}</Text>
+                        <Text>Weight: {patientInfo.weight}</Text>
+                        <Text>Age: {patientInfo.age}</Text>
+
+                    </View>
                 </View>
-
-            </View>
+            )}
 
             <View style={styles.nextBtn}>
                 <Button
@@ -42,9 +54,6 @@ const Question3 = ({ navigation }) => {
                     onPress={handleNextBtn}
                 />
             </View>
-            {/* {error ? <Text style={styles.errorText}>{error}</Text> : null} */}
-
-
         </ScrollView>
     );
 }
@@ -61,14 +70,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         marginVertical: 10,
     },
-    questionBox: {
-        backgroundColor: 'white',
-        width: 300,
-        padding: 4,
-        borderColor: 'blue', // Change 'blue' to the desired color
-        borderWidth: 1,
-        fontSize: 20,
-    },
     questionText: {
         fontSize: 20,
         fontWeight: 'bold',
@@ -78,10 +79,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end',
         al: 'flex-end'
-    },
-    errorText: {
-        color: 'red',
-        marginTop: 10,
     },
 });
 
