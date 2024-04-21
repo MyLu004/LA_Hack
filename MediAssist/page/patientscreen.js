@@ -26,7 +26,10 @@ const PatientScreen = ({navigation}) => {
             };
         
     const handleStartButtonPress = () => {
-        navigation.navigate('Camera');
+        navigation.navigate('CameraPage');
+    };
+    const handleChatButtonPress = () => {
+        navigation.navigate('Patientchat');
     };
 
     return (
@@ -51,6 +54,10 @@ const PatientScreen = ({navigation}) => {
                     <Button
                         title='START'
                         onPress={handleStartButtonPress}
+                    />
+                    <Button
+                        title='Chat'
+                        onPress={handleChatButtonPress}
                     />
                 </View>
             </View>

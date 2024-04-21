@@ -1,5 +1,7 @@
 // App.js
 import React from 'react';
+import 'react-native-gesture-handler';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './page/homescreen';
@@ -12,9 +14,12 @@ import Question3 from './page/question3';
 import Question4 from './page/question4';
 import Analysing from './page/Analysing';
 import Schedule from './page/schedule';
-import Camera from './page/Camera';
-import Patientchat from './page/patientchat';
 
+import Patientchat from './page/patientchat';
+import { AppRegistry } from 'react-native';
+import CameraPage from './page/CameraPage'; 
+
+AppRegistry.registerComponent('CameraPage', () => MediAssist);
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -26,7 +31,7 @@ const App = () => {
         <Stack.Screen name="Patientscreen" component={PatientScreen} />
 
         <Stack.Screen name="Patientchat" component={Patientchat} />
-        <Stack.Screen name="Camera" component={Camera} />
+        <Stack.Screen name="CameraPage" component={CameraPage} />
 
         <Stack.Screen name="Question" component={Question} />
         <Stack.Screen name="Question2" component={Question2} />
