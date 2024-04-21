@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import * as GoogleGenerativeAI from "@google/generative-ai";
 import {
   View,
@@ -6,15 +6,13 @@ import {
   TextInput,
   FlatList,
   StyleSheet,
+  ActivityIndicator,
   TouchableOpacity,
-  Image,
 } from "react-native";
 import * as Speech from "expo-speech";
-import { RNCamera } from 'react-native-camera';
 import { FontAwesome } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import FlashMessage, { showMessage } from "react-native-flash-message";
-// import { PermissionsAndroid } from 'react-native';
 
 const GeminiChat = () => {
   const [messages, setMessages] = useState([]);
@@ -22,24 +20,16 @@ const GeminiChat = () => {
   const [loading, setLoading] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [showStopIcon, setShowStopIcon] = useState(false);
-  const cameraRef = useRef(null);
-  const [isCameraReady, setCameraReady] = useState(false);
 
-  const API_KEY = "AIzaSyDF8N_x2as_psMF3qwEKMU8qqXD57_uIno";
+  const API_KEY = "AIzaSyA-RiB6nvzquymNr4YPUXcfMY3LQd2pxJ4";
 
   useEffect(() => {
     const startChat = async () => {
       const genAI = new GoogleGenerativeAI.GoogleGenerativeAI(API_KEY);
-      const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
-      const prompt = "This image contains information about patient's medication. Given the name or description and the time they should take the medication, describe the product as thoroughly as possible based on what you see and know about the medication. Then Give them a schedule of on each day of the week at what time they should take the medication such as Monday: Afternoon take on pill.";
-      
-      // const imageParts = await fileToGenerativePart(fileInput);
-      const localImage = require('../assets/med.png');
-
-      // const result = await model.generateContent([prompt, imageParts]);
-      const result = await model.generateContent([prompt, localImage]);
-
-      const response = await result.response;
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const prompt = "hello! ";
+      const result = await model.generateContent(prompt);
+      const response = result.response;
       const text = response.text();
       console.log(text);
       showMessage({
@@ -56,6 +46,7 @@ const GeminiChat = () => {
         },
       ]);
     };
+    //function call
     startChat();
   }, []);
 
@@ -74,6 +65,9 @@ const GeminiChat = () => {
     setLoading(false);
     setUserInput("");
 
+    // if (text) {
+    //   Speech.speak(text);
+    // }
     if (text && !isSpeaking) {
       Speech.speak(text);
       setIsSpeaking(true);
@@ -82,6 +76,7 @@ const GeminiChat = () => {
   };
 
   const toggleSpeech = () => {
+    console.log("isSpeaking", isSpeaking);
     if (isSpeaking) {
       Speech.stop();
       setIsSpeaking(false);
@@ -92,7 +87,7 @@ const GeminiChat = () => {
   };
 
   const ClearMessage = () => {
-    setMessages([]);
+    setMessages("");
     setIsSpeaking(false);
   };
 
@@ -104,20 +99,13 @@ const GeminiChat = () => {
     </View>
   );
 
-  const takePicture = async () => {
-    if (cameraRef.current && isCameraReady) {
-      const options = { quality: 0.5, base64: true };
-      const data = await cameraRef.current.takePictureAsync(options);
-      console.log(data.uri);
-    }
-  };
-
   return (
     <View style={styles.container}>
       <FlatList
         data={messages}
         renderItem={renderMessage}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item) => item.text}
+        inverted
       />
       <View style={styles.inputContainer}>
         <TouchableOpacity style={styles.micIcon} onPress={toggleSpeech}>
@@ -126,12 +114,20 @@ const GeminiChat = () => {
               name="microphone-slash"
               size={24}
               color="white"
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             />
           ) : (
             <FontAwesome
               name="microphone"
               size={24}
               color="white"
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             />
           )}
         </TouchableOpacity>
@@ -143,21 +139,15 @@ const GeminiChat = () => {
           style={styles.input}
           placeholderTextColor="#fff"
         />
-        {showStopIcon && (
-          <TouchableOpacity style={styles.stopIcon} onPress={ClearMessage}>
-            <Entypo name="controller-stop" size={24} color="white" />
-          </TouchableOpacity>
-        )}
-      </View>
-      <RNCamera
-        ref={cameraRef}
-        style={{ flex: 1 }}
-        onCameraReady={() => setCameraReady(true)}
-      />
-      <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-        <TouchableOpacity onPress={takePicture} style={{ padding: 20 }}>
-          <Text style={{ fontSize: 20 }}>Take Picture</Text>
-        </TouchableOpacity>
+        {
+          //show stop icon only when speaking
+          showStopIcon && (
+            <TouchableOpacity style={styles.stopIcon} onPress={ClearMessage}>
+              <Entypo name="controller-stop" size={24} color="white" />
+            </TouchableOpacity>
+          )
+        }
+        {/* {loading && <ActivityIndicator size="large" color="black" />} */}
       </View>
     </View>
   );
@@ -195,13 +185,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginLeft: 3,
-  },
-  userMessage: {
-    alignSelf: "flex-end",
-    backgroundColor: "#4caf50",
-    color: "white",
-    borderRadius: 10,
-    maxWidth: "80%",
   },
 });
 
