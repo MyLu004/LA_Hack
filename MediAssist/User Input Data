@@ -1,0 +1,60 @@
+import React, { useState } from 'react';
+import { View, TextInput, Button, Text } from 'react-native';
+
+const PatientForm = () => {
+  const [patientInfo, setPatientInfo] = useState({
+    name: '',
+    diagnosis: '',
+    medication: '',
+    weight: '',
+    age: ''
+  });
+
+  const handleChange = (name, value) => {
+    setPatientInfo(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSubmit = () => {
+    // Here you would typically send this data to a backend server or local storage
+    console.log(patientInfo);
+    // You can also prepare the data for the Google Gemini API here
+  };
+
+  return (
+    <View>
+      <TextInput
+        placeholder="Name"
+        onChangeText={(text) => handleChange('name', text)}
+        value={patientInfo.name}
+      />
+      <TextInput
+        placeholder="Diagnosis"
+        onChangeText={(text) => handleChange('diagnosis', text)}
+        value={patientInfo.diagnosis}
+      />
+      <TextInput
+        placeholder="Medication"
+        onChangeText={(text) => handleChange('medication', text)}
+        value={patientInfo.medication}
+      />
+      <TextInput
+        placeholder="Weight (lbs)"
+        keyboardType="numeric"
+        onChangeText={(text) => handleChange('weight', text)}
+        value={patientInfo.weight}
+      />
+      <TextInput
+        placeholder="Age"
+        keyboardType="numeric"
+        onChangeText={(text) => handleChange('age', text)}
+        value={patientInfo.age}
+      />
+      <Button
+        title="Submit"
+        onPress={handleSubmit}
+      />
+    </View>
+  );
+};
+
+export default PatientForm;
