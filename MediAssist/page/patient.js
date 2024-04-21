@@ -1,6 +1,8 @@
 // PatientScreen.js
 import React from 'react';
 import GeminiChat from "./GeminiChat";
+// import Chat from "./Chat";
+
 import { StyleSheet, Text, View, Image, Button }
     from 'react-native';
 import FlashMessage from "react-native-flash-message";
@@ -8,7 +10,7 @@ import FlashMessage from "react-native-flash-message";
 const PatientScreen = () => {
     return (
         <View style={styles.container}>
-            <Image source={require('../assets/mediassist logo.png')}></Image>
+            {/* <Image source={require('../assets/mediassist logo.png')}></Image> */}
             <Text>Patient Screen</Text>
             <GeminiChat />
             <FlashMessage position={"top"} />

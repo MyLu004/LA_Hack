@@ -39,7 +39,7 @@ const CaretakerScreen = ({ navigation }) => {
 
                 ></Image>
                 <View style={styles.innerWrapper}>
-                    <Text>We are here help with elderly care</Text>
+                    <Text>We are here to help with elderly care</Text>
                     <Button
                         title='START'
                         onPress={handleStartButtonPress}
@@ -67,7 +67,7 @@ const CaretakerScreen = ({ navigation }) => {
             </View>
 
             <View>
-                <Text style={styles.title}>Schedule the appoinment</Text>
+                <Text style={styles.title}>Schedule an appoinment</Text>
                 <Button
                     title='HERE'
                     borderRadius={100}
