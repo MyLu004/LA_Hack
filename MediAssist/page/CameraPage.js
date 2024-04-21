@@ -16,7 +16,7 @@ import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import FlashMessage, { showMessage } from "react-native-flash-message";
-import { readFileSync } from 'fs';
+// import { readFileSync } from 'fs';
 // import { PermissionsAndroid } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 
