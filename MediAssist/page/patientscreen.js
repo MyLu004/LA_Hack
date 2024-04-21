@@ -4,20 +4,31 @@ import GeminiChat from "./GeminiChat";
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import FlashMessage from "react-native-flash-message";
 
-const Patient = ({ navigation }) => {
+// const Patient = ({ navigation }) => {
 
-    // Define static patient information
+//     // Define static patient information
+//     const patient = {
+//         name: 'John Doe',
+//         age: 65,
+//         // Add other fields as needed
+//     };
+
+//     const handleStartButtonPress = () => {
+//         navigation.navigate('Camera');
+//     };
+
+const PatientScreen = ({navigation}) => {
+
     const patient = {
         name: 'John Doe',
         age: 65,
-        // Add other fields as needed
-    };
-
+                // Add other fields as needed
+            };
+        
     const handleStartButtonPress = () => {
         navigation.navigate('Camera');
     };
 
-const PatientScreen = () => {
     return (
         <View style={styles.container}>
             <Image source={require('../assets/mediassist logo.png')}></Image>
@@ -45,7 +56,7 @@ const PatientScreen = () => {
             </View>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -84,5 +95,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
-}
+
 export default PatientScreen;

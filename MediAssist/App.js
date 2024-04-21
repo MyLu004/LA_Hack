@@ -13,6 +13,7 @@ import Question4 from './page/question4';
 import Analysing from './page/Analysing';
 import Schedule from './page/schedule';
 import Camera from './page/Camera';
+import Patientchat from './page/patientchat';
 
 
 const Stack = createStackNavigator();
@@ -24,9 +25,8 @@ const App = () => {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Caretaker" component={CaretakerScreen} />
         <Stack.Screen name="Patientscreen" component={PatientScreen} />
-        <Stack.Screen name="Patient" component={Patient} />
 
-        <Stack.Screen name="Patientchat" component={PatientScreen} />
+        <Stack.Screen name="Patientchat" component={Patientchat} />
         <Stack.Screen name="Camera" component={Camera} />
 
         <Stack.Screen name="Question" component={Question} />

@@ -19,7 +19,7 @@ const HomeScreen = ({ navigation }) => {
 
                 <Button
                     title='Patient'
-                    onPress={() => navigation.navigate('Patient')}
+                    onPress={() => navigation.navigate('Patientscreen')}
                     style={styles.button}
                 />
             </View>

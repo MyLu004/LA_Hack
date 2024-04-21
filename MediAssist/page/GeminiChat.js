@@ -105,7 +105,6 @@ const GeminiChat = () => {
         data={messages}
         renderItem={renderMessage}
         keyExtractor={(item) => item.text}
-        inverted
       />
       <View style={styles.inputContainer}>
         <TouchableOpacity style={styles.micIcon} onPress={toggleSpeech}>
