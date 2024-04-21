@@ -12,7 +12,7 @@ import Question3 from './page/question3';
 import Question4 from './page/question4';
 import Analysing from './page/Analysing';
 import Schedule from './page/schedule';
-import Camera from './page/Camera';
+import CameraPage from './page/Camera';
 import Patientchat from './page/patientchat';
 
 const Stack = createStackNavigator();
@@ -26,7 +26,7 @@ const App = () => {
         <Stack.Screen name="Patientscreen" component={PatientScreen} />
 
         <Stack.Screen name="Patientchat" component={Patientchat} />
-        <Stack.Screen name="Camera" component={Camera} />
+        <Stack.Screen name="Camera" component={CameraPage} />
 
         <Stack.Screen name="Question" component={Question} />
         <Stack.Screen name="Question2" component={Question2} />

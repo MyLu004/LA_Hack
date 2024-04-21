@@ -24,7 +24,7 @@ const PatientScreen = ({navigation}) => {
         age: 65,
                 // Add other fields as needed
             };
-        
+
     const handleStartButtonPress = () => {
         navigation.navigate('Camera');
     };
