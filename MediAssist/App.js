@@ -15,7 +15,6 @@ import Schedule from './page/schedule';
 import Camera from './page/Camera';
 import Patientchat from './page/patientchat';
 
-
 const Stack = createStackNavigator();
 
 const App = () => {

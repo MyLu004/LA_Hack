@@ -10,7 +10,7 @@ import {
   Image,
 } from "react-native";
 import * as Speech from "expo-speech";
-import { RNCamera } from 'react-native-camera';
+// import { RNCamera } from 'react-native-camera';
 import { FontAwesome } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import FlashMessage, { showMessage } from "react-native-flash-message";
