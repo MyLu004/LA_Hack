@@ -1,0 +1,11 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const storeData = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(value)
+    await AsyncStorage.setItem('@patient_info', jsonValue)
+  } catch (e) {
+    // saving error
+    console.error("Failed to save data", e);
+  }
+}
