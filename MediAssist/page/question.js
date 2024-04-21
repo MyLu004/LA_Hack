@@ -22,6 +22,8 @@ const Question = ({ navigation }) => {
     const handleNextBtn = () => {
         // Increase the question index
         if (isAllQuestionsAnswered()) {
+
+            //submit & save answer for AI generate later
             console.log("all question got answer")
             navigation.navigate('Question2');
             setError('');
