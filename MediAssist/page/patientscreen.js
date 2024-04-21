@@ -1,14 +1,8 @@
 // PatientScreen.js
 import React from 'react';
-<<<<<<< Updated upstream
 import GeminiChat from "./GeminiChat";
-import { StyleSheet, Text, View, Image, Button }
-    from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import FlashMessage from "react-native-flash-message";
-=======
-import Question from './question';
-import Schedule from "./schedule";
-import { StyleSheet, View, Text, Button, Image } from 'react-native';
 
 const Patient = ({ navigation }) => {
 
@@ -23,22 +17,13 @@ const Patient = ({ navigation }) => {
         navigation.navigate('Camera');
     };
 
-
-    // // Function to handle navigation to the Question screen
-    // const handleStartButtonPress = () => {
-    //     navigation.navigate('Question');
-    // };
->>>>>>> Stashed changes
-
 const PatientScreen = () => {
     return (
         <View style={styles.container}>
-<<<<<<< Updated upstream
             <Image source={require('../assets/mediassist logo.png')}></Image>
             <Text>Patient Screen</Text>
             <GeminiChat />
             <FlashMessage position={"top"} />
-=======
             {/* <Text>Care Taker Screen</Text> */}
             <View gap={10}>
                 <Text >Welcome Back, {patient.name}!</Text>
@@ -58,8 +43,6 @@ const PatientScreen = () => {
                     />
                 </View>
             </View>
-
->>>>>>> Stashed changes
         </View>
     );
 }
@@ -69,8 +52,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'lightblue',
         alignItems: 'center',
-<<<<<<< Updated upstream
-=======
         justifyContent: 'flex-start',
         padding: 30,
         gap: 15,
@@ -100,9 +81,8 @@ const styles = StyleSheet.create({
 
     wrapperHis: {
         flexDirection: 'row',
->>>>>>> Stashed changes
         justifyContent: 'center',
     },
 });
-
+}
 export default PatientScreen;
