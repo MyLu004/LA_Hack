@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, ScrollView, View, Text, TextInput, Button } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Question3 = ({ navigation }) => {
-    const [ques1, setQues1] = useState('');
 
 
 
-    // const [error, setError] = useState('');
-
-    // const isAllQuestionsAnswered = () => {
-    //     // Check if any of the questionBox inputs are empty
-    //     if (ques1.trim() === '') {
-    //         return false; // At least one question is not answered
-    //     }
-    //     return true; // All questions are answered
-    // };
 
     const handleNextBtn = () => {
         navigation.navigate('Caretaker');

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, ScrollView, View, Text, TextInput, Button } from 'react-native';
+// import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Question = ({ navigation }) => {
     const [ques1, setQues1] = useState('');
@@ -11,6 +14,15 @@ const Question = ({ navigation }) => {
 
     const [error, setError] = useState('');
 
+    const storeData = async (key, value) => {
+        try {
+            await AsyncStorage.setItem(key, value);
+            console.log('Data saved successfully');
+        } catch (error) {
+            console.error('Error saving data:', error);
+        }
+    };
+
     const isAllQuestionsAnswered = () => {
         // Check if any of the questionBox inputs are empty
         if (ques1.trim() === '' || ques2.trim() === '' || ques3.trim() === '' || ques4.trim() === '' || ques5.trim() === '') {
@@ -19,14 +31,27 @@ const Question = ({ navigation }) => {
         return true; // All questions are answered
     };
 
-    const handleNextBtn = () => {
+
+
+
+    const handleNextBtn = async () => {
         // Increase the question index
         if (isAllQuestionsAnswered()) {
+            try {
+                // Save answers to AsyncStorage
+                await storeData('ques1', ques1);
+                await storeData('ques2', ques2);
+                await storeData('ques3', ques3);
+                await storeData('ques4', ques4);
+                await storeData('ques5', ques5);
 
-            //submit & save answer for AI generate later
-            console.log("all question got answer")
-            navigation.navigate('Question2');
-            setError('');
+                console.log("all question got answer");
+                navigation.navigate('Question2');
+                setError('');
+            } catch (error) {
+                console.error('Error saving answers:', error);
+                setError('Error saving answers');
+            }
         } else {
             console.log("please answer all the questions")
             setError('Please answer all questions');
