@@ -18,6 +18,7 @@ import Schedule from './page/schedule';
 import Patientchat from './page/patientchat';
 import { AppRegistry } from 'react-native';
 import CameraPage from './page/CameraPage'; 
+import Imagegemini from './page/imagegemini';
 
 AppRegistry.registerComponent('CameraPage', () => MediAssist);
 const Stack = createStackNavigator();
@@ -32,6 +33,7 @@ const App = () => {
 
         <Stack.Screen name="Patientchat" component={Patientchat} />
         <Stack.Screen name="CameraPage" component={CameraPage} />
+        <Stack.Screen name="Imagegemini" component={Imagegemini} />
 
         <Stack.Screen name="Question" component={Question} />
         <Stack.Screen name="Question2" component={Question2} />

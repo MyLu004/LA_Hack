@@ -31,6 +31,9 @@ const PatientScreen = ({navigation}) => {
     const handleChatButtonPress = () => {
         navigation.navigate('Patientchat');
     };
+    const handleImageButtonPress = () => {
+        navigation.navigate('Imagegemini');
+    };
 
     return (
         <View style={styles.container}>
@@ -58,6 +61,10 @@ const PatientScreen = ({navigation}) => {
                     <Button
                         title='Chat'
                         onPress={handleChatButtonPress}
+                    />
+                    <Button
+                        title='Image Gemini'
+                        onPress={handleImageButtonPress}
                     />
                 </View>
             </View>
