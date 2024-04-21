@@ -7,7 +7,11 @@ const PatientForm = () => {
     diagnosis: '',
     medication: '',
     weight: '',
-    age: ''
+    age: '',
+    medication: '',
+    dosage: '',
+    frequency: '',
+    times: '',
   });
 
   const handleChange = (name, value) => {
@@ -49,6 +53,35 @@ const PatientForm = () => {
         onChangeText={(text) => handleChange('age', text)}
         value={patientInfo.age}
       />
+
+      <TextInput
+        placeholder="Medication Name"
+        keyboardType="numeric"
+        onChangeText={(text) => handleChange('medication', text)}
+        value={patientInfo.age}
+      />
+
+      <TextInput
+        placeholder="Dosage"
+        keyboardType="numeric"
+        onChangeText={(text) => handleChange('medication', text)}
+        value={patientInfo.age}
+      />
+
+      <TextInput
+        placeholder="Frequency"
+        keyboardType="numeric"
+        onChangeText={(text) => handleChange('frequency', text)}
+        value={patientInfo.age}
+      />
+
+      <TextInput
+        placeholder="Times"
+        keyboardType="numeric"
+        onChangeText={(text) => handleChange('times', text)}
+        value={patientInfo.age}
+      />
+
       <Button
         title="Submit"
         onPress={handleSubmit}

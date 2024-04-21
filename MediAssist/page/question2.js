@@ -10,9 +10,22 @@ const Question2 = ({ navigation }) => {
 
     const [error, setError] = useState('');
 
+    // const storeData = async (key, value) => {
+    //     try {
+    //         await AsyncStorage.setItem(key, value);
+    //         console.log('Data saved successfully');
+    //     } catch (error) {
+    //         console.error('Error saving data:', error);
+    //     }
+    // };
+
+    //key arrow function storing the data
     const storeData = async (key, value) => {
         try {
-            await AsyncStorage.setItem(key, value);
+            let patientInfo = await AsyncStorage.getItem('@patient_info');
+            patientInfo = patientInfo ? JSON.parse(patientInfo) : {}; // Parse existing data or initialize an empty object
+            patientInfo[key] = value; // Update the patientInfo object with the new value
+            await AsyncStorage.setItem('@patient_info', JSON.stringify(patientInfo)); // Save the updated object back to AsyncStorage
             console.log('Data saved successfully');
         } catch (error) {
             console.error('Error saving data:', error);
@@ -33,10 +46,10 @@ const Question2 = ({ navigation }) => {
         if (isAllQuestionsAnswered()) {
             try {
                 // Save answers to AsyncStorage
-                await storeData('ques1', ques1);
-                await storeData('ques2', ques2);
-                await storeData('ques3', ques3);
-                await storeData('ques4', ques4);
+                await storeData('medication', ques1);
+                await storeData('dosage', ques2);
+                await storeData('frequency', ques3);
+                await storeData('times', ques4);
 
 
                 console.log("all question got answer");

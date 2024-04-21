@@ -1,38 +1,63 @@
-import React, { useState } from 'react';
-import { StyleSheet, ScrollView, View, Text, TextInput, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import {
+    View,
+    Text,
+    Button,
+    ScrollView,
+    StyleSheet,
+} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const API_KEY = "AIzaSyDF8N_x2as_psMF3qwEKMU8qqXD57_uIno";
+
+const genAI = new GoogleGenerativeAI(API_KEY);
+
 const Question3 = ({ navigation }) => {
-
-
-
+    const [generatedText, setGeneratedText] = useState('');
+    const [patientInfo, setPatientInfo] = useState(null);
 
     const handleNextBtn = () => {
         navigation.navigate('Caretaker');
     };
 
+    useEffect(() => {
+        const displayResult = async () => {
+            const jsonValue = await AsyncStorage.getItem('@patient_info');
+            if (jsonValue !== null) {
+                const data = JSON.parse(jsonValue);
+                setPatientInfo(data);
+
+                // Extract patient information to include in the prompt
+                const { name, weight, age, diagnosis, description, medication, dosage, frequency } = data;
+                const prompt = `Patient Name: ${name}\nWeight: ${weight}\nAge: ${age}\nDiagnosis: ${diagnosis}\nDescription: ${description}\nMedication: ${medication}\nDosage: ${dosage}\nFrequency: ${frequency}\n\nBased on the data, considering the diagnosis (${diagnosis}) and medication (${medication}), it's important to ensure proper adherence to the prescribed medication regimen. Please remind to the users/patient take their medication as directed. Act like you are doctor`;
+                ;
+
+                // Generate text based on the combined prompt
+                const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+                const result = await model.generateContent(prompt);
+                const response = await result.response;
+                const text = response.text();
+                setGeneratedText(text);
+            };
+        }
+        displayResult();
+    }, []);
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            {/* Header: processing bar */}
-
-            {/* Question 5 */}
             <View style={styles.questionWrapper}>
                 <Text style={styles.questionText}>ANALYSIS COMPLETED</Text>
-                <View>
-                    {/*ANWER FOR THE RECORD, base all on the info the user type in */}
-                </View>
-
+                <ScrollView style={styles.boxWrapper}>
+                    <Text>{generatedText}</Text>
+                </ScrollView>
             </View>
-
             <View style={styles.nextBtn}>
                 <Button
                     title='DONE'
                     onPress={handleNextBtn}
                 />
             </View>
-            {/* {error ? <Text style={styles.errorText}>{error}</Text> : null} */}
-
-
         </ScrollView>
     );
 }
@@ -49,28 +74,22 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         marginVertical: 10,
     },
-    questionBox: {
-        backgroundColor: 'white',
-        width: 300,
-        padding: 4,
-        borderColor: 'blue', // Change 'blue' to the desired color
-        borderWidth: 1,
-        fontSize: 20,
-    },
     questionText: {
         fontSize: 20,
         fontWeight: 'bold',
     },
-
     nextBtn: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        al: 'flex-end'
     },
-    errorText: {
-        color: 'red',
-        marginTop: 10,
-    },
+    boxWrapper: {
+        width: 350,
+        height: 300,
+        borderColor: 'black',
+        borderWidth: 1,
+        margin: 10,
+        padding: 10,
+    }
 });
 
 export default Question3;
