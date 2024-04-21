@@ -12,6 +12,8 @@ import Question3 from './page/question3';
 import Question4 from './page/question4';
 import Analysing from './page/Analysing';
 import Schedule from './page/schedule';
+import Camera from './page/Camera';
+
 
 const Stack = createStackNavigator();
 
@@ -21,7 +23,14 @@ const App = () => {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Caretaker" component={CaretakerScreen} />
+<<<<<<< Updated upstream
         <Stack.Screen name="Patient" component={PatientScreen} />
+=======
+        <Stack.Screen name="Patient" component={Patient} />
+
+        <Stack.Screen name="Patientchat" component={PatientScreen} />
+        <Stack.Screen name="Camera" component={Camera} />
+>>>>>>> Stashed changes
 
         <Stack.Screen name="Question" component={Question} />
         <Stack.Screen name="Question2" component={Question2} />
