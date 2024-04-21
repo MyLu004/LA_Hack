@@ -7,6 +7,7 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import * as Speech from "expo-speech";
 import { RNCamera } from 'react-native-camera';
@@ -32,9 +33,12 @@ const GeminiChat = () => {
       const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
       const prompt = "This image contains information about patient's medication. Given the name or description and the time they should take the medication, describe the product as thoroughly as possible based on what you see and know about the medication. Then Give them a schedule of on each day of the week at what time they should take the medication such as Monday: Afternoon take on pill.";
       
-      const imageParts = await fileToGenerativePart(fileInput);
+      // const imageParts = await fileToGenerativePart(fileInput);
+      const localImage = require('../assets/med.png');
 
-      const result = await model.generateContent([prompt, imageParts]);
+      // const result = await model.generateContent([prompt, imageParts]);
+      const result = await model.generateContent([prompt, localImage]);
+
       const response = await result.response;
       const text = response.text();
       console.log(text);

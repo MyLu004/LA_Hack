@@ -4,7 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './page/homescreen';
 import CaretakerScreen from './page/careTaker';
-import PatientScreen from './page/patient';
+import PatientScreen from './page/patientchat';
+import Patient from './page/patient';
 
 import Question from './page/question';
 import Question2 from './page/question2';
@@ -21,7 +22,9 @@ const App = () => {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Caretaker" component={CaretakerScreen} />
-        <Stack.Screen name="Patient" component={PatientScreen} />
+        <Stack.Screen name="Patient" component={Patient} />
+
+        <Stack.Screen name="Patientchat" component={PatientScreen} />
 
         <Stack.Screen name="Question" component={Question} />
         <Stack.Screen name="Question2" component={Question2} />
