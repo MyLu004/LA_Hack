@@ -86,7 +86,7 @@ const Question = ({ navigation }) => {
                 <Text style={styles.questionText}>Enter Weight</Text>
                 <TextInput
                     style={styles.questionBox}
-                    placeholder='Weight (ibs)'
+                    placeholder='Weight (lbs)'
                     onChangeText={(val) => setQues2(val)}
                 />
                 {/* ANSWER */}
