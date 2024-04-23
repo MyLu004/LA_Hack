@@ -6,7 +6,7 @@ const HomeScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Image source={require('../assets/doctorImg.png')} />
-            <Text style={styles.text}> Welcome to MedAssist </Text>
+            <Text style={styles.text}> Welcome to MediScan </Text>
 
             <View style={styles.innerWrapper}>
                 <Text style={styles.textp}> ARE YOU A...</Text>

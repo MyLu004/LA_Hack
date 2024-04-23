@@ -30,7 +30,10 @@ const Question3 = ({ navigation }) => {
 
                 // Extract patient information to include in the prompt
                 const { name, weight, age, diagnosis, description, medication, dosage, frequency } = data;
-                const prompt = `Patient Name: ${name}\nWeight: ${weight}\nAge: ${age}\nDiagnosis: ${diagnosis}\nDescription: ${description}\nMedication: ${medication}\nDosage: ${dosage}\nFrequency: ${frequency}\n\nBased on the data, considering the diagnosis (${diagnosis}) and medication (${medication}), it's important to ensure proper adherence to the prescribed medication regimen. Please remind to the users/patient take their medication as directed. Act like you are doctor`;
+
+                // const prompt = `Patient is experiencing ${diagnosis} and the detail for their diagnosis is ${description}. Can you analyze it and base on it, can you tell how accurate the medication, ${medication}, they take is going to help. Give us instructions of how to take this medication or the schedule for takingg the medication. `;
+
+                const prompt = `Patient Name: ${name}\nWeight: ${weight}\nAge: ${age}\nDiagnosis: ${diagnosis}\nDescription: ${description}\nMedication: ${medication}\nDosage: ${dosage}\nFrequency: ${frequency}\n\nBased on the data, considering the diagnosis (${diagnosis}) and medication (${medication}), Patient is experiencing ${diagnosis} and the detail for their diagnosis is ${description}. Can you analyze it and base on it, can you tell how accurate the medication, ${medication}, they take is going to help. Give us instructions of how to take this medication or the schedule for takingg the medication.`;
                 ;
 
                 // Generate text based on the combined prompt
